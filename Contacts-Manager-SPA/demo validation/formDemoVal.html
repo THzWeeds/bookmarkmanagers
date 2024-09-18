@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ::placeholder {
+        color: red;
+      }
+      input:invalid,
+      select:invalid {
+        color: red;
+      }
+
+      input[type="radio"]:invalid {
+        color: red;
+      }
+      .formControl {
+        display: block;
+        width: 100%;
+        padding: 6px;
+        margin: 0px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        border: 1px solid gray;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      .radiobtn {
+        width: 20px;
+        margin: 5px;
+        padding: 0px;
+      }
+
+      .groupbox {
+        display: grid;
+        grid-template-columns: 80px 20px;
+      }
+
+      legend {
+        font-weight: bold;
+      }
+      .main {
+        margin: auto;
+        padding: 8px;
+        width: 280px;
+        border-radius: 4px;
+        border: 1px solid gray;
+      }
+      input[type="number"] {
+        width: 60px;
+      }
+      .color {
+        float: rigth;
+        padding: 0px;
+        padding-left: 2px;
+        padding-right: 2px;
+        width: 60px;
+        height: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <fieldset class="main">
+      <legend>Inscription</legend>
+      <form
+        id="subscribeform"
+        action="https://kbg-serverapi.glitch.me/api/bounces"
+        method="POST"
+      >
+        <input
+          class="formControl"
+          name="FirstName"
+          placeholder="Prénom"
+          required
+          invalidMessage="Veuillez entrer votre prénom"
+        />
+        <input
+          class="formControl"
+          name="LastName"
+          placeholder="Nom"
+          required
+          invalidMessage="Veuillez entrer votre nom"
+        />
+        <input
+          input="tel"
+          class="formControl phone"
+          name="Phone"
+          placeholder="(000) 000-0000"
+          required
+          invalidMessage="Veuillez entrer un téléphone valide"
+        />
+        <input
+          class="formControl zipcode"
+          name="ZipCode"
+          placeholder="A1A 1A1"
+          style="text-transform: uppercase"
+          required
+          invalidMessage="Veuillez entrer un code postal valide"
+        />
+        <input
+          type="email"
+          class="formControl Email"
+          name="Email"
+          placeholder="Courriel"
+          required
+          invalidMessage="Veuillez entrer un courriel valide"
+        />
+        <select class="formControl" name="Country" required>
+          <option value="" selected>Sélectionnez votre pays</option>
+          <option value="Canada">Canada</option>
+          <option value="États-Unis">États-Unis</option>
+          <option value="France">France</option>
+          <option value="Royaume-Unis">Royaume-Unis</option>
+          <option value="Espagne">Espagne</option>
+        </select>
+        <fieldset class="formControl groupbox">
+          <legend>Genre</legend>
+          <label for="Sex1">Masculin</label>
+          <input
+            type="radio"
+            class="radiobtn"
+            name="Sex"
+            id="Sex1"
+            value="Masculin"
+            required
+            invalidMessage="Veuillez entrer un genre"
+          />
+          <label for="Sex2">Féminin</label>
+          <input
+            type="radio"
+            class="radiobtn"
+            name="Sex"
+            id="Sex2"
+            value="Féminin"
+          />
+          <label for="Sex3">autre</label>
+          <input
+            type="radio"
+            class="radiobtn"
+            name="Sex"
+            id="Sex3"
+            value="autre"
+          />
+        </fieldset>
+        <fieldset class="formControl">
+          <legend>Date de naissance</legend>
+          <input
+            class="formControl"
+            type="date"
+            name="Birthdate"
+            required
+            invalidMessage="Entrez votre date de naissance"
+          />
+        </fieldset>
+
+        <fieldset class="formControl">
+          <legend>Couleurs</legend>
+          <div style="display: grid; grid-template-columns: auto auto">
+            <label style="margin-top: 4px">Texte</label>
+            <input
+              class="formControl color"
+              type="color"
+              name="Color"
+              id="color"
+              value="#000000"
+            />
+            <label style="margin-top: 4px">Fond</label>
+            <input
+              class="formControl color"
+              type="color"
+              name="BackColor"
+              id="color"
+              value="#FFFFFF"
+            />
+          </div>
+        </fieldset>
+
+        <fieldset class="formControl">
+          <legend>Nombre d'enfants</legend>
+          <input
+            class="formControl"
+            type="number"
+            name="NbChildrens"
+            required
+            invalidMessage="Entrez le nombre d'enfants"
+          />
+        </fieldset>
+        <fieldset class="formControl">
+          <legend>Options</legend>
+          <input type="checkbox" name="RememberMe" id="RememberMe" />
+          <label for="RememberMe">Se souvenir de moi</label>
+          <br />
+          <input
+            type="checkbox"
+            name="SubscribeToNewsLetter"
+            id="SubscribeToNewsLetter"
+          />
+          <label for="SubscribeToNewsLetter">Recevoir les bulletins</label>
+        </fieldset>
+        <fieldset class="formControl">
+          <legend>Conditions d'utilisation</legend>
+          <input
+            type="checkbox"
+            name="ConditionsAccepted"
+            id="ConditionsAccepted"
+            required
+            invalidMessage="Veuillez accepter les conditions d'utilisation"
+          />
+          <label for="ConditionsAccepted">j'accepte</label>
+        </fieldset>
+        <input class="formControl" type="submit" value="Soumettre..." />
+        <input
+          class="formControl"
+          type="reset"
+          value="Effacer le formulaire"
+          onclick="return confirm('Effacer le formulaire?');"
+        />
+      </form>
+    </fieldset>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+    <script defer >
+      $(() => {
+        $(".Email").each(function () {
+          $(this).attr(
+            "pattern",
+            /* https://regex-generator.olafneumann.org/ vraiment cool*/
+            /* String.raw pour ne pas interpréter les "\" */
+            String.raw`^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$`
+          );
+        });
+
+        $(".phone").each(function () {
+          $(this).attr("pattern", String.raw`^\(\d\d\d\)\s\d\d\d-\d\d\d\d$`);
+          $(this).mask("(999) 999-9999");
+          $(this).attr("onchange", "this.setCustomValidity('')");
+          $(this).attr("onkeypress", "this.setCustomValidity('')");
+        });
+
+        $(".zipcode").each(function () {
+          $(this).attr(
+            "pattern",
+            String.raw`^[a-zA-Z][0-9]+[a-zA-Z]\s[0-9]+[a-zA-Z][0-9]+$`
+          );
+          $(this).mask("a9a 9a9");
+          $(this).attr("onchange", "this.setCustomValidity('')");
+          $(this).attr("onkeypress", "this.setCustomValidity('')");
+        });
+
+        $("input[type='checkbox']").each(function () {
+          $(this).attr("onchange", "this.setCustomValidity('')");
+        });
+
+        $("input[type='number']").each(function () {
+          $(this).attr("onchange", "this.setCustomValidity('')");
+        });
+
+        $("input[type='radio']").each(function () {
+          $(this).attr(
+            "onchange",
+            "this.setCustomValidity(''); document.getElementsByName('" +
+              $(this).attr("name") +
+              "').forEach((radio) => {radio.setCustomValidity('')});"
+          );
+          console.log($(this).attr("onchange"));
+        });
+
+        $("[required]").each(function () {
+          let invalidMessage = $(this).attr("invalidMessage");
+          if (invalidMessage) {
+            $(this).attr(
+              "oninvalid",
+              "this.setCustomValidity('" +
+                invalidMessage.replace("'", "\\'") +
+                "')"
+            );
+            $(this).attr("oninput", "this.setCustomValidity('')");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
